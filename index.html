@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form with validation</title>
+    <script src="https://kit.fontawesome.com/093b44ed79.js" crossorigin="anonymous"></script>
+
+    <!-- style sheet -->
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
+
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #0DC4FC;
+        }
+
+        .container {
+            background-color: white;
+            width: 45vw;
+            height: ;
+            margin: 50px auto 0;
+            padding: 20px;
+            -webkit-box-shadow: 0px 0px 12px 1px rgba(0, 0, 0, 0.3);
+            -moz-box-shadow: 0px 0px 12px 1px rgba(0, 0, 0, 0.3);
+            box-shadow: 0px 0px 12px 1px rgba(0, 0, 0, 0.3);
+        }
+
+        .heading {
+            text-align: center;
+            /* padding-bottom: 1px; */
+            font-family: 'Bebas Neue', cursive;
+            font-size: 2.5em;
+
+        }
+
+        .form-input {
+            margin: 20px 0px;
+        }
+
+        .form-input .name {
+            height: 30px;
+            width: 49.5%;
+            padding-left: 40px;
+            border-radius: 0;
+            border: 1px solid black;
+            outline: none;
+
+
+        }
+
+        .form-input .email,
+        .number,
+        .password,
+        .cpassword {
+            height: 30px;
+            width: 100%;
+            padding-left: 40px;
+            border-radius: 0;
+            border: 1px solid black;
+            outline: none;
+        }
+
+        .icon {
+            position: absolute;
+            padding: 7px 7.5px;
+
+            border-right: 1px solid black;
+
+        }
+
+        .gender {
+            margin-left: 7px;
+            margin-right: 3px;
+        }
+
+        .region {
+            margin-left: 7px;
+            width: 28%;
+            height: 30px;
+            border: 1px solid black;
+        }
+
+        .terms {
+            margin-left: 7px;
+        }
+
+        .button {
+            width: 100%;
+            height: 30px;
+            border-radius: 0;
+            border: none;
+            color: white;
+            background-color: #0DC4FC;
+            font-weight: bold;
+            font-size: 16px;
+            font-family: 'Viga', sans-serif;
+        }
+
+        .button:hover {
+            background-color: #0095C2;
+
+        }
+
+        .formerror {
+            color: red;
+            font-size: 14px;
+            font-weight: bold;
+        }
+
+        @media (max-width: 970px) {
+
+            .form-input {
+                margin: 23px 0px;
+            }
+
+            .container {
+                width: 100%;
+                height: fit-content;
+                margin: 0;
+            }
+
+            .form-input .name {
+                width: 100%;
+                height: 33px;
+            }
+
+            .form-input .firstname {
+                margin-bottom: 23px;
+            }
+
+            .form-input .email,
+            .number,
+            .password,
+            .cpassword {
+                height: 33px;
+            }
+
+            .heading {
+                padding-bottom: 10px;
+            }
+        }
+    </style>
+    <!-- style tag ending -->
+</head>
+
+
+<body>
+
+    <div class="container">
+        <h1 class="heading">Sign up</h1>
+        <form action="/action.php" method="post" name="signupform" onsubmit="return validateform()">
+            <div class="form-input">
+                <i class="fa-solid fa-user icon"></i>
+                <input type="text" placeholder="First name" class="input name firstname" name="fname" required>
+
+                <!-- <span class="lastnames"> -->
+                <i class="fa-solid fa-user icon"></i>
+                <input type="text" placeholder='Last name' class="input name " name="lname" required>
+                <span class="formerror" id="fnameerror"></span>
+                <!-- </span> -->
+            </div>
+
+
+            <div class="form-input">
+                <i class="fa-solid fa-envelope icon"></i>
+                <input type="email" placeholder="Email id" class="input email" name="email" required>
+                <span class="formerror" id="emailerror"></span>
+            </div>
+
+
+            <div class="form-input">
+                <i class="fa-solid fa-phone icon"></i>
+                <input type="number" placeholder="Phone no." class="input number" name="phonenumber" required>
+                <span class="formerror" id="phonenumbererror"></span>
+            </div>
+
+
+            <div class="form-input">
+                <i class="fa-solid fa-lock icon"></i>
+                <input type="password" placeholder="Password" class="input password" name="password" required>
+                <span class="formerror" id="passworderror"></span>
+            </div>
+
+
+            <div class="form-input">
+                <i class="fa-solid fa-lock icon"></i>
+                <input type="password" placeholder="Confirm Password" class="input cpassword" name="confirmpassword"
+                    required>
+                <span class="formerror" id="confirmpassworderror"></span>
+            </div>
+
+
+            <div class="form-input">
+                <span><b>Gender:</b></span>
+                <span class="gender">Male</span><input type="radio" name="gender" required>
+                <span class="gender">Female</span><input type="radio" name="gender" required>
+            </div>
+
+            <div class="form-input">
+                <span><b>Region:</b></span>
+                <select class="region" required>
+                    <option>select</option>
+                    <option>India</option>
+                    <option>Japan</option>
+                    <option>China</option>
+                    <option>Africa</option>
+                    <option>Dubai</option>
+                </select>
+            </div>
+
+            <div class="form-input">
+
+                <input type="checkbox" id="termscheckbox" class="" required><label class="terms" for="termscheckbox">I
+                    agree to the <b>Terms of the user</b></label>
+            </div>
+
+            <div class="form-input">
+                <input type="submit" value="submit" class="button">
+            </div>
+        </form>
+    </div>
+
+   
+
+    <!-- script code starts from here -->
+    <script>
+        function clearerror() {
+            let errorclear = document.getElementsByClassName('formerror');
+            console.log(errorclear);
+
+            for (let items of errorclear) {
+
+                items.innerHTML = "";
+
+            }
+        }
+
+        function seterror(id, error) {
+            let element = document.getElementById(id);
+            element.innerHTML = error;
+        }
+
+        function validateform() {
+
+            clearerror();
+            var validate = true;
+            let error = document.getElementsByClassName('input');
+
+            for (let items of error) {
+                if (items.value.length == 0) {
+                    validate = false;
+                }
+                else {
+                    validate = true;
+                }
+            }
+
+            let firstname = document.forms["signupform"]["fname"];
+
+            if (firstname.value.length < 3 && firstname.value.length != 0) {
+                seterror('fnameerror', "*First name must be more than 2 characters");
+                validate = false;
+            }
+
+            let phoneno = document.forms["signupform"]["phonenumber"].value;
+
+            if (phoneno.length != 10 && phoneno.length != 0) {
+                seterror('phonenumbererror', '*Phone number must be 10 digits')
+                validate = false;
+            }
+
+            let password = document.forms["signupform"]["password"].value;
+
+            if (password.length < 6 && password.length != 0) {
+                seterror('passworderror', '*Password must be more than 6 characters');
+                validate = false;
+            }
+
+            let cpassword = document.forms["signupform"]["confirmpassword"].value;
+
+            if (cpassword != password) {
+                seterror('confirmpassworderror', '*Password and confirm password must match');
+                validate = false;
+            }
+            return validate;
+        }
+    </script>
+
+</body>
+
+</html>
